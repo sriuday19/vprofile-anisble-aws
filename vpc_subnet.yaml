@@ -99,5 +99,5 @@
           - "{{ pubsub3_out.subnet.id }}"
         routes:
           - dest: 0.0.0.0/0
-            gateway_id: "{{ igw-0475271c4c5e5f2f6 }}"
+            gateway_id: "{{ igw.gateway_id }}"
       register: pubout_RT
