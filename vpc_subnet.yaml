@@ -15,7 +15,7 @@
         az: "{{zone1}}"
         map_public: True
         tags:
-          name: vprofile-pubsub1
+          Name: vprofile-pubsub1
       register: pubsub1_out
 
     - name: Create public-subnet
@@ -24,10 +24,10 @@
         vpc_id: vpc-0fc45ee16e87b9e79
         cidr: "{{pubsub2}}"
         region: "{{region}}"
-        az: "{{zone1}}"
+        az: "{{zone2}}"
         map_public: True
         tags:
-          name: vprofile-pubsub2
+          Name: vprofile-pubsub2
       register: pubsub2_out
 
     - name: Create public-subnet
@@ -39,7 +39,7 @@
         az: "{{zone3}}"
         map_public: True
         tags:
-          name: vprofile-pubsub3
+          Name: vprofile-pubsub3
       register: pubsub3_out
 
     - name: Create pirvate-subnet 
@@ -51,7 +51,7 @@
         az: "{{zone1}}"
         map_public: True
         tags:
-          name: vprofile-pirsub1
+          Name: vprofile-pirsub1
       register: pirsub1_out
     
     - name: Create pirvate-subnet 
@@ -63,7 +63,7 @@
         az: "{{zone2}}"
         map_public: True
         tags:
-          name: vprofile-pirsub2
+          Name: vprofile-pirsub2
       register: pirsub2_out
 
     - name: Create pirvate-subnet 
@@ -75,5 +75,5 @@
         az: "{{zone3}}"
         map_public: True
         tags:
-          name: vprofile-pirsub3
+          Name: vprofile-pirsub3
       register: pirsub3_out
