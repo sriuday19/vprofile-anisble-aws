@@ -16,3 +16,7 @@
        tenancy: "default"
        state: present
      register: vpcout
+    
+   - name: printing the vpcout
+     debug:
+       var: vpcout
