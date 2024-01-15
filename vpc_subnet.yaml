@@ -87,8 +87,8 @@
           Name: vprofile-igw
       register: igw
 
-    - name: Create VPC gateway
-      amazon.aws.ec2_vpc_igw:
+    - name: Create route table
+      amazon.aws.ec2_vpc_route_table:
         vpc_id: vpc-0fc45ee16e87b9e79
         region: "{{region}}"
         tags:
