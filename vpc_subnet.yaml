@@ -77,3 +77,12 @@
         tags:
           Name: vprofile-pirsub3
       register: pirsub3_out
+
+    - name: Create Internet gateway
+      amazon.aws.ec2_vpc_igw:
+        vpc_id: vpc-0fc45ee16e87b9e79
+        region: "{{region}}"
+        state: present
+        tags:
+          Name: vprofile-igw
+      register: igw
