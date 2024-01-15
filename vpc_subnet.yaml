@@ -1,0 +1,79 @@
+---
+- hosts: localhost
+  connection: local
+  gather_facts: False
+  tasks:
+    - name: importing variables
+      included_vars: vars/vpc_setup
+    
+    - name: Create public-subnet
+      amazon.aws.ec2_vpc_subnet:
+        state: present
+        vpc_id: vpc-0fc45ee16e87b9e79
+        cidr: "{{pubsub1}}"
+        region: "{{region}}"
+        az: "{{zone1}}"
+        map_public: True
+        tags:
+          name: vprofile-pubsub1
+      register: pubsub1_out
+
+    - name: Create public-subnet
+      amazon.aws.ec2_vpc_subnet:
+        state: present
+        vpc_id: vpc-0fc45ee16e87b9e79
+        cidr: "{{pubsub2}}"
+        region: "{{region}}"
+        az: "{{zone1}}"
+        map_public: True
+        tags:
+          name: vprofile-pubsub2
+      register: pubsub2_out
+
+    - name: Create public-subnet
+      amazon.aws.ec2_vpc_subnet:
+        state: present
+        vpc_id: vpc-0fc45ee16e87b9e79
+        cidr: "{{pubsub3}}"
+        region: "{{region}}"
+        az: "{{zone3}}"
+        map_public: True
+        tags:
+          name: vprofile-pubsub3
+      register: pubsub3_out
+
+    - name: Create pirvate-subnet 
+      amazon.aws.ec2_vpc_subnet:
+        state: present
+        vpc_id: vpc-0fc45ee16e87b9e79
+        cidr: "{{pirsub1}}"
+        region: "{{region}}"
+        az: "{{zone1}}"
+        map_public: True
+        tags:
+          name: vprofile-pirsub1
+      register: pirsub1_out
+    
+    - name: Create pirvate-subnet 
+      amazon.aws.ec2_vpc_subnet:
+        state: present
+        vpc_id: vpc-0fc45ee16e87b9e79
+        cidr: "{{pirsub2}}"
+        region: "{{region}}"
+        az: "{{zone2}}"
+        map_public: True
+        tags:
+          name: vprofile-pirsub2
+      register: pirsub2_out
+
+    - name: Create pirvate-subnet 
+      amazon.aws.ec2_vpc_subnet:
+        state: present
+        vpc_id: vpc-0fc45ee16e87b9e79
+        cidr: "{{pirsub3}}"
+        region: "{{region}}"
+        az: "{{zone3}}"
+        map_public: True
+        tags:
+          name: vprofile-pirsub3
+      register: pirsub3_out
