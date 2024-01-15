@@ -4,7 +4,7 @@
   gather_facts: False
   tasks:
     - name: importing variables
-      included_vars: vars/vpc_setup
+      include_vars: vars/vpc_setup
     
     - name: Create public-subnet
       amazon.aws.ec2_vpc_subnet:
