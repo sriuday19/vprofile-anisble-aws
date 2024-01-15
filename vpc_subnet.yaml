@@ -101,3 +101,27 @@
           - dest: 0.0.0.0/0
             gateway_id: "{{ igw.gateway_id }}"
       register: pubout_RT
+    
+    - name: Create new nat gateway and allocate new EIP if a nat gateway does not yet exist in the subnet.
+      amazon.aws.ec2_vpc_nat_gateway:
+        state: present
+        subnet_id: "{{ pubsub1_out.subnet.id }}"
+        wait: true
+        region: "{{region}}"
+        if_exist_do_not_create: true
+      register: new_nat_gateway
+
+    - name: Create private route table
+      amazon.aws.ec2_vpc_route_table:
+        vpc_id: vpc-0fc45ee16e87b9e79
+        region: "{{region}}"
+        tags:
+          Name: Vprofile-pirvateRT
+        subnets:
+          - "{{ pirsub1_out.subnet.id }}"
+          - "{{ pirsub2_out.subnet.id }}"
+          - "{{ pirsub3_out.subnet.id }}"
+        routes:
+          - dest: 0.0.0.0/0
+            gateway_id: "{{ new_nat_gateway.gateway_id }}"
+      register: pubout_RT
