@@ -149,6 +149,7 @@
         pirsub3id: "{{pirsub3_out.subnet.id}}" 
         igwid: "{{igw.gateway_id}}"
         ngwid: "{{new_nat_gateway.nat_gateway_id}}"
+        cacheable: yes
 
     - name: creating variable file for vpc pirsub1_out
       copy: 
