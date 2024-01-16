@@ -29,7 +29,7 @@
         vpc_id: vpc-0fc45ee16e87b9e79
         region: "{{region}}"
         rules: 
-          - proto: ssh
+          - proto: tcp
             from_port: 22
             to_port: 22
             cidr_ip: 0.0.0.0/0
