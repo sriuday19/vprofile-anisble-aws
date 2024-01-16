@@ -12,7 +12,7 @@
     - name: creating ec2 key
       amazon.aws.ec2_key:
         name: bastion
-        region: "{region}"
+        region: "{{region}}"
       register: bastion_key
     
     - name: storing the key
