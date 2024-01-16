@@ -6,8 +6,8 @@
     - name: importing the variables
       include_vars: vars/bastion_setup
 
-    - name: importing variables
-      include_vars: vars/output_vars
+    - name: importing vars
+      include_vars: vars/vpc_output_vars
 
     - name: creating ec2 key
       amazon.aws.ec2_key:
@@ -26,7 +26,7 @@
       amazon.aws.ec2_security_group:
         name: bastion-sg
         description: This is the security group for bastion server
-        vpc_id: "{{vpccid}}"
+        vpc_id: "{{vpcid}}"
         region: "{{region}}"
         rules: 
           - proto: tcp
