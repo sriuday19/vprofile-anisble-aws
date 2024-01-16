@@ -141,7 +141,6 @@
         - igw.gateway_id
         - new_nat_gateway.nat_gateway_id
     - ansible.builtin.set_fact:
-        vpcoutid: "{{vpcout.vpc.id}}"
         pubsub1id: "{{pubsub1_out.subnet.id}}"
         pubsub2id: "{{pubsub2_out.subnet.id}}"
         pubsub3id: "{{pubsub3_out.subnet.id}}"
@@ -153,5 +152,5 @@
 
     - name: creating variable file for vpc pirsub1_out
       copy: 
-        content: "{{vpcout.vpc.id}}\n{{pubsub1_out.subnet.id}}\n{{pubsub2_out.subnet.id}}\n{{pubsub3_out.subnet.id}}\n{{pirsub1_out.subnet.id}}\n{{pirsub2_out.subnet.id}}\n{{pirsub3_out.subnet.id}}\n{{igw.gateway_id}}\n{{new_nat_gateway.nat_gateway_id}}"
+        content: "{{pubsub1_out.subnet.id}}\n{{pubsub2_out.subnet.id}}\n{{pubsub3_out.subnet.id}}\n{{pirsub1_out.subnet.id}}\n{{pirsub2_out.subnet.id}}\n{{pirsub3_out.subnet.id}}\n{{igw.gateway_id}}\n{{new_nat_gateway.nat_gateway_id}}"
         dest: vars/output_vars
