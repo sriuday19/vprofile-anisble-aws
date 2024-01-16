@@ -54,7 +54,7 @@
             from_port: 80
             to_port: 80
             cidr_ip: "{{MYIP}}"
-            group_id: "{{vprosglb.group_id}}"
+            group_id: "{{vprosglb_out.group_id}}"
 
           - proto: tcp
             from_port: 22
