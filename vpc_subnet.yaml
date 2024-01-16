@@ -153,5 +153,5 @@
 
     - name: creating variable file for vpc pirsub1_out
       copy: 
-        content: "{{pubsub1_out.subnet.id}}\n{{pubsub2_out.subnet.id}}\n{{pubsub3_out.subnet.id}}\n{{pirsub1_out.subnet.id}}\n{{pirsub2_out.subnet.id}}\n{{pirsub3_out.subnet.id}}\n{{igw.gateway_id}}\n{{new_nat_gateway.nat_gateway_id}}"
+        content: "pubsub1id: {{pubsub1_out.subnet.id}}\npubsub2id: {{pubsub2_out.subnet.id}}\npubsub3id: {{pubsub3_out.subnet.id}}\npirsub1id: {{pirsub1_out.subnet.id}}\npirsub2id: {{pirsub2_out.subnet.id}}\npirsub3id: {{pirsub3_out.subnet.id}}\nigwid: {{igw.gateway_id}}\nngwid: {{new_nat_gateway.nat_gateway_id}}"
         dest: vars/output_vars
