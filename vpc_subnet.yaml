@@ -131,12 +131,27 @@
       debug:
         var: "{{item}}"
       loop:
-        - vpcout
+        - vpcout.vpc.id
         - pubsub1_out.subnet.id
         - pubsub2_out.subnet.id
-        - pubsub3_out.subnet.id
+        - pubsub3_out.subnet.idpubsub3_out.subnet.id
         - pirsub1_out.subnet.id
         - pirsub2_out.subnet.id
         - pirsub3_out.subnet.id
         - igw.gateway_id
         - new_nat_gateway.nat_gateway_id
+    - ansible.builtin.set_fact:
+        vpcoutid: "{{vpcout.vpc.id}}"
+        pubsub1id: "{{pubsub1_out.subnet.id}}"
+        pubsub2id: "{{pubsub2_out.subnet.id}}"
+        pubsub3id: "{{pubsub3_out.subnet.id}}"
+        pirsub1id: "{{pirsub1_out.subnet.id}}"
+        pirsub2id: "{{pirsub2_out.subnet.id}}"
+        pirsub3id: "{{pirsub3_out.subnet.id}}" 
+        igwid: "{{igw.gateway_id}}"
+        ngwid: "{{new_nat_gateway.nat_gateway_id}}"
+
+    - name: creating variable file for vpc pirsub1_out
+      copy: 
+        content: "{{vpcout.vpc.id}}\n{{pubsub1_out.subnet.id}}\n{{pubsub2_out.subnet.id}}\n{{pubsub3_out.subnet.id}}\n{{pirsub1_out.subnet.id}}\n{{pirsub2_out.subnet.id}}\n{{pirsub3_out.subnet.id}}\n{{igw.gateway_id}}\n{{new_nat_gateway.nat_gateway_id}}"
+        dest: vars/output_vars
