@@ -32,7 +32,7 @@
           - proto: tcp
             from_port: 22
             to_port: 22
-            cidr_ip: 0.0.0.0/0
+            cidr_ip: "{{MYIP}}"
       register: bastionsg_out
 
     - debug:
@@ -47,6 +47,7 @@
         wait: yes
         exact_count: 1
         security_group: "{{bastionsg_out.group_id}}"
+        vpc_subnet_id: "{{pubsub1id}}"
         image_id: "{{bastion_ami}}"
       register: bastionhost_out
       
