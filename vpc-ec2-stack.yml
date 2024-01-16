@@ -1,0 +1,29 @@
+---
+- hosts: localhost
+  connection: local
+  gather_facts: False
+  tasks:
+    - name: importing variables
+      include_vars: vars/vpc_output_vars
+    
+    - name: importing vpc variables
+      include_vars: vars/vpc_setup
+
+    - name: importing bastion
+      include_vars: vars/bastion_setup
+
+    - name: ami images
+      include_vars: vars/ec2_ami
+
+    - name: creating key-pair
+      amazon.aws.ec2_key:
+        name: vprokey      
+        region: "{{region}}"
+      register: vprokey_out
+
+    - name: storing the key
+      copy:
+       content: "{{vprokey_out.key.private_key}}"
+       dest: "./vprokey.pem"
+       mode: 0600
+      when: vprokey_out.changed
