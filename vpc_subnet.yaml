@@ -24,7 +24,7 @@
     - name: Create public-subnet
       amazon.aws.ec2_vpc_subnet:
         state: present
-        vpc_id: vpc-0fc45ee16e87b9e79
+        vpc_id: "{{vpcout.vpc.id}}"
         cidr: "{{pubsub1}}"
         region: "{{region}}"
         az: "{{zone1}}"
@@ -36,7 +36,7 @@
     - name: Create public-subnet
       amazon.aws.ec2_vpc_subnet:
         state: present
-        vpc_id: vpc-0fc45ee16e87b9e79
+        vpc_id: "{{vpcout.vpc.id}}"
         cidr: "{{pubsub2}}"
         region: "{{region}}"
         az: "{{zone2}}"
@@ -48,7 +48,7 @@
     - name: Create public-subnet
       amazon.aws.ec2_vpc_subnet:
         state: present
-        vpc_id: vpc-0fc45ee16e87b9e79
+        vpc_id: "{{vpcout.vpc.id}}"
         cidr: "{{pubsub3}}"
         region: "{{region}}"
         az: "{{zone3}}"
@@ -60,7 +60,7 @@
     - name: Create pirvate-subnet 
       amazon.aws.ec2_vpc_subnet:
         state: present
-        vpc_id: vpc-0fc45ee16e87b9e79
+        vpc_id: "{{vpcout.vpc.id}}"
         cidr: "{{pirsub1}}"
         region: "{{region}}"
         az: "{{zone1}}"
@@ -72,7 +72,7 @@
     - name: Create pirvate-subnet 
       amazon.aws.ec2_vpc_subnet:
         state: present
-        vpc_id: vpc-0fc45ee16e87b9e79
+        vpc_id: "{{vpcout.vpc.id}}"
         cidr: "{{pirsub2}}"
         region: "{{region}}"
         az: "{{zone2}}"
@@ -84,7 +84,7 @@
     - name: Create pirvate-subnet 
       amazon.aws.ec2_vpc_subnet:
         state: present
-        vpc_id: vpc-0fc45ee16e87b9e79
+        vpc_id: "{{vpcout.vpc.id}}"
         cidr: "{{pirsub3}}"
         region: "{{region}}"
         az: "{{zone3}}"
@@ -95,7 +95,7 @@
 
     - name: Create Internet gateway
       amazon.aws.ec2_vpc_igw:
-        vpc_id: vpc-0fc45ee16e87b9e79
+        vpc_id: "{{vpcout.vpc.id}}"
         region: "{{region}}"
         state: present
         tags:
@@ -104,7 +104,7 @@
 
     - name: Create route table
       amazon.aws.ec2_vpc_route_table:
-        vpc_id: vpc-0fc45ee16e87b9e79
+        vpc_id: "{{vpcout.vpc.id}}"
         region: "{{region}}"
         tags:
           Name: Vprofile-pubRT
@@ -128,7 +128,7 @@
 
     - name: Create private route table
       amazon.aws.ec2_vpc_route_table:
-        vpc_id: vpc-0fc45ee16e87b9e79
+        vpc_id: "{{vpcout.vpc.id}}"
         region: "{{region}}"
         tags:
           Name: Vprofile-pirvateRT
@@ -156,6 +156,7 @@
         - igw.gateway_id
         - new_nat_gateway.nat_gateway_id
     - ansible.builtin.set_fact:
+        vpcid: "{{vpcout.vpc.id}}"
         pubsub1id: "{{pubsub1_out.subnet.id}}"
         pubsub2id: "{{pubsub2_out.subnet.id}}"
         pubsub3id: "{{pubsub3_out.subnet.id}}"
@@ -168,5 +169,5 @@
 
     - name: creating variable file for vpc pirsub1_out
       copy: 
-        content: "pubsub1id: {{pubsub1_out.subnet.id}}\npubsub2id: {{pubsub2_out.subnet.id}}\npubsub3id: {{pubsub3_out.subnet.id}}\npirsub1id: {{pirsub1_out.subnet.id}}\npirsub2id: {{pirsub2_out.subnet.id}}\npirsub3id: {{pirsub3_out.subnet.id}}\nigwid: {{igw.gateway_id}}\nngwid: {{new_nat_gateway.nat_gateway_id}}"
+        content: "vpcid: {{vpcout.vpc.id}}\npubsub1id: {{pubsub1_out.subnet.id}}\npubsub2id: {{pubsub2_out.subnet.id}}\npubsub3id: {{pubsub3_out.subnet.id}}\npirsub1id: {{pirsub1_out.subnet.id}}\npirsub2id: {{pirsub2_out.subnet.id}}\npirsub3id: {{pirsub3_out.subnet.id}}\nigwid: {{igw.gateway_id}}\nngwid: {{new_nat_gateway.nat_gateway_id}}"
         dest: vars/output_vars

@@ -26,7 +26,7 @@
       amazon.aws.ec2_security_group:
         name: bastion-sg
         description: This is the security group for bastion server
-        vpc_id: vpc-0fc45ee16e87b9e79
+        vpc_id: "{{vpccid}}"
         region: "{{region}}"
         rules: 
           - proto: tcp
