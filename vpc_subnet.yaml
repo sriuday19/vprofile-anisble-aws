@@ -155,8 +155,8 @@
         - pirsub3_out.subnet.id
         - igw.gateway_id
         - new_nat_gateway.nat_gateway_id
-        - pubout_RT.route_table_id
-        - pirout_RT.route_table_id
+        - pubout_RT.route_table.id
+        - pirout_RT.route_table.id
     - ansible.builtin.set_fact:
         vpcid: "{{vpcout.vpc.id}}"
         pubsub1id: "{{pubsub1_out.subnet.id}}"
@@ -167,11 +167,11 @@
         pirsub3id: "{{pirsub3_out.subnet.id}}" 
         igwid: "{{igw.gateway_id}}"
         ngwid: "{{new_nat_gateway.nat_gateway_id}}"
-        puboutid: "{{pubout_RT.route_table_id}}"
-        piroutid: "{{pirout_RT.route_table_id}}"
+        puboutid: "{{pubout_RT.route_table.id}}"
+        piroutid: "{{pirout_RT.route_table.id}}"
         cacheable: yes
 
     - name: creating variable file for vpc pirsub1_out
       copy: 
-        content: "vpcid: {{vpcout.vpc.id}}\npubsub1id: {{pubsub1_out.subnet.id}}\npubsub2id: {{pubsub2_out.subnet.id}}\npubsub3id: {{pubsub3_out.subnet.id}}\npirsub1id: {{pirsub1_out.subnet.id}}\npirsub2id: {{pirsub2_out.subnet.id}}\npirsub3id: {{pirsub3_out.subnet.id}}\nigwid: {{igw.gateway_id}}\nngwid: {{new_nat_gateway.nat_gateway_id}}\npuboutid: {{pubout_RT.route_table_id}}\npiroutid: {{pirout_RT.route_table_id}}"
+        content: "vpcid: {{vpcout.vpc.id}}\npubsub1id: {{pubsub1_out.subnet.id}}\npubsub2id: {{pubsub2_out.subnet.id}}\npubsub3id: {{pubsub3_out.subnet.id}}\npirsub1id: {{pirsub1_out.subnet.id}}\npirsub2id: {{pirsub2_out.subnet.id}}\npirsub3id: {{pirsub3_out.subnet.id}}\nigwid: {{igw.gateway_id}}\nngwid: {{new_nat_gateway.nat_gateway_id}}\npuboutid: {{pubout_RT.route_table.id}}\npiroutid: {{pirout_RT.route_table.id}}"
         dest: vars/vpc_output_vars
