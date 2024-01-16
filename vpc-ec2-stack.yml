@@ -23,7 +23,53 @@
 
     - name: storing the key
       copy:
-       content: "{{vprokey_out.key.private_key}}"
-       dest: "./vprokey.pem"
-       mode: 0600
+        content: "{{vprokey_out.key.private_key}}"
+        dest: "./vprokey.pem"
+        mode: 0600
       when: vprokey_out.changed
+
+    - name: creating sg for loadbalancer
+      amazon.aws.ec2_security_group:
+        name: vprofile-lb-sg
+        description: This is the sg for the loadbalancer
+        vpc_id: "{{vpcid}}"
+        region: "{{region}}"
+        rules:
+          - proto: tcp
+            from_port: 80
+            to_port: 80
+            cidr_ip: 0.0.0.0/0
+            rule_desc: allow all on port 80
+      register: vprosglb_out
+
+    - name: creating sg for ec2 instances
+      amazon.aws.ec2_security_group:
+        name: vprofile-ec2-sg
+        description: This is the sg for the ec2 instance
+        vpc_id: "{{vpcid}}"
+        region: "{{region}}"
+        purge_rules: no
+        rules:
+          - proto: tcp
+            from_port: 80
+            to_port: 80
+            group_id: "{{vprosglb_out.group_id}}"
+
+          - proto: tcp
+            from_port: 22
+            to_port: 22
+            group_id: "{{bastionsg_out.group_id}}"
+      register: vprosg_out
+
+    - name: creating sg for ec2 instances
+      amazon.aws.ec2_security_group:
+        name: vprofile-ec2-sg
+        description: This is the sg for the ec2 instance
+        vpc_id: "{{vpcid}}"
+        region: "{{region}}"
+        purge_rules: no
+        rules:
+          - proto: all
+            group_id: "{{vprosg_out.group_id}}"
+      
+      
