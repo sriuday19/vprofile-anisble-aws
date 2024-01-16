@@ -19,6 +19,7 @@
       copy:
         content: "{{bastion_key.key.private_key}}"
         dest: "./bastion-key.pem"
+        mode: 0600
       when: bastion_key.changed
 
     - name: creatinng the security group
@@ -26,6 +27,7 @@
         name: bastion-sg
         description: This is the security group for bastion server
         vpc_id: vpc-0fc45ee16e87b9e79
+        region: "{{region}}"
         rules: 
           - proto: ssh
             from_port: 22
