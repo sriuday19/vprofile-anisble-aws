@@ -5,10 +5,7 @@
   tasks:
     - name: importing the variables
       include_vars: vars/bastion_setup
-
-    - name: importing variables
-      include_vars: vars/output_vars
-
+      
     - name: creating ec2 key
       amazon.aws.ec2_key:
         name: bastion
