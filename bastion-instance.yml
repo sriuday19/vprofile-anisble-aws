@@ -32,7 +32,7 @@
           - proto: ssh
             from_port: 22
             to_port: 22
-            cidr_ip: "{{MYIP}}"
+            cidr_ip: 192.140.155.214/32
       register: bastion_out
 
     - name: creating bastion instance
