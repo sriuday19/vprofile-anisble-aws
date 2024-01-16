@@ -33,7 +33,10 @@
             from_port: 22
             to_port: 22
             cidr_ip: 0.0.0.0/0
-      register: bastion_out
+      register: bastionsg_out
+
+    - debug:
+        var: bastionsg_out
 
     - name: creating bastion instance
       amazon.aws.ec2_instance:
@@ -43,7 +46,7 @@
         instance_type: t2.micro
         wait: yes
         exact_count: 1
-        security_group: "{{bastion_out.group_id}}"
+        security_group: "{{bastionsg_out.group_id}}"
         image_id: "{{bastion_ami}}"
       register: bastionhost_out
       
