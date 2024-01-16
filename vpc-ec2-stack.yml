@@ -62,5 +62,16 @@
             cidr_ip: "{{MYIP}}"
             group_id: "{{bastionsg_out.group_id}}"
       register: vprosg_out
+
+    - name: creating sg for ec2 instances
+      amazon.aws.ec2_security_group:
+        name: vprofile-ec2-sg
+        description: This is the sg for the ec2 instance
+        vpc_id: "{{vpcid}}"
+        region: "{{region}}"
+        purge_rules: no
+        rules:
+          - proto: all
+            group_id: "{{vprosg_out.group_id}}"
       
       
