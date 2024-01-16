@@ -53,7 +53,7 @@
           - proto: tcp
             from_port: 80
             to_port: 80
-            group_id: "{{vprosglb_out.group_id}}"
+            group_id: sg-0147435592e2f7368
 
           - proto: tcp
             from_port: 22
