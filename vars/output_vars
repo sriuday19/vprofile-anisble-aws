@@ -1,7 +1,8 @@
-subnet-0e1fb6e3bb990b949
-subnet-075ef243a99754a1c
-subnet-0f8890c880fa17d9c
-subnet-0fce36258a3cbc76e
-subnet-00b5769a6df402d92
-subnet-06e01d7691316b6f2
-igw-090ab135de3536ee2
+pubsub1id: subnet-0e1fb6e3bb990b949
+pubsub2id: subnet-075ef243a99754a1c
+pubsub3id: subnet-0f8890c880fa17d9c
+pirsub1id: subnet-0fce36258a3cbc76e
+pirsub2id: subnet-00b5769a6df402d92
+pirsub3id: subnet-06e01d7691316b6f2
+igwid: igw-090ab135de3536ee2
+ngwid: nat-0577d052e583d28a4u
